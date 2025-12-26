@@ -5,22 +5,33 @@
         Console.WriteLine("Welcome to the Item Manager!");
 
         ItemManager manager = new ItemManager();
-
-        // Part One: Fix the NullReferenceException
-        // This will throw a NullReferenceException
         manager.AddItem("Apple");
         manager.AddItem("Banana");
-
         manager.PrintAllItems();
-
-        // Part Two: Implement the RemoveItem method
         manager.RemoveItem("Apple");
 
-        // Part Three: Introduce a Fruit class and use the ItemManager<Fruit> to add a few fruits and print them on the console.
-        // TODO: Implement this part three.
+        // Part Three: Generic Implementation
+        Console.WriteLine("\n--- Fruit Manager ---");
+        ItemManager<Fruit> fruitManager = new ItemManager<Fruit>();
+        fruitManager.AddItem(new Fruit { Name = "Mango", Color = "Yellow" });
+        fruitManager.AddItem(new Fruit { Name = "Strawberry", Color = "Red" });
+        fruitManager.AddItem(new Fruit { Name = "Grape", Color = "Purple" });
+
+        fruitManager.PrintAllItems();
 
         // Part Four (Bonus): Implement an interface IItemManager and make ItemManager implement it.
         // TODO: Implement this part four.
+    }
+}
+
+public class Fruit
+{
+    public string Name { get; set; }
+    public string Color { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Name} ({Color})";
     }
 }
 
@@ -73,6 +84,11 @@ public class ItemManager<T>
 {
     private List<T> items;
 
+    public ItemManager()
+    {
+        items = new List<T>();
+    }
+
     public void AddItem(T item)
     {
         items.Add(item);
@@ -85,9 +101,9 @@ public class ItemManager<T>
             Console.WriteLine(item);
         }
     }
-
-    public void ClearAllItems()
+    
+    public void RemoveItem(T item)
     {
-        items = [];
+        items.Remove(item);
     }
 }
