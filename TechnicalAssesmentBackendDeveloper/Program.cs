@@ -41,7 +41,7 @@ public class Fruit
     }
 }
 
-// 2. Implement the Interface here (Part 4)
+// Implement the Interface here (Part 4)
 public class ItemManager : IItemManager
 {
     private List<string> items;
