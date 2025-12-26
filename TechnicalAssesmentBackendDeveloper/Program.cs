@@ -1,10 +1,19 @@
-﻿class Program
+﻿// (Part 4)
+public interface IItemManager
+{
+    void AddItem(string item);
+    void RemoveItem(string item);
+    void PrintAllItems();
+}
+
+class Program
 {
     static void Main(string[] args)
     {
         Console.WriteLine("Welcome to the Item Manager!");
 
-        ItemManager manager = new ItemManager();
+        // Using the interface in the declaration is a good way to test it
+        IItemManager manager = new ItemManager();
         manager.AddItem("Apple");
         manager.AddItem("Banana");
         manager.PrintAllItems();
@@ -18,9 +27,6 @@
         fruitManager.AddItem(new Fruit { Name = "Grape", Color = "Purple" });
 
         fruitManager.PrintAllItems();
-
-        // Part Four (Bonus): Implement an interface IItemManager and make ItemManager implement it.
-        // TODO: Implement this part four.
     }
 }
 
@@ -35,11 +41,11 @@ public class Fruit
     }
 }
 
-public class ItemManager
+// 2. Implement the Interface here (Part 4)
+public class ItemManager : IItemManager
 {
     private List<string> items;
 
-    // Constructor to initialize the items list (fixes the NullReferenceException)
     public ItemManager()
     {
         items = new List<string>();
@@ -58,9 +64,6 @@ public class ItemManager
         }
     }
 
-
-    // Part Two: Implement the RemoveItem method
-    // TODO: Implement this method
     public void RemoveItem(string item)
     {
         if (items.Contains(item))
@@ -76,7 +79,7 @@ public class ItemManager
 
     public void ClearAllItems()
     {
-        items = [];
+        items.Clear();
     }
 }
 
