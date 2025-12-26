@@ -28,6 +28,12 @@ public class ItemManager
 {
     private List<string> items;
 
+    // Constructor to initialize the items list (fixes the NullReferenceException)
+    public ItemManager()
+    {
+        items = new List<string>();
+    }
+
     public void AddItem(string item)
     {
         items.Add(item);
@@ -40,6 +46,7 @@ public class ItemManager
             Console.WriteLine(item);
         }
     }
+    
 
     // Part Two: Implement the RemoveItem method
     // TODO: Implement this method
